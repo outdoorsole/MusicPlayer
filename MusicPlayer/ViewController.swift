@@ -18,6 +18,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         searchTextField.delegate = self
+        
+        // create base URL
+        let baseURL = URL(string: "https://itunes.apple.com/search")!
+        
+        // create dictionary with key/value pairs for query
+        let queryDictionary: [String: String] = [
+            "term": "Johnny Cash",
+            "media": "music",
+            "limit": "10",
+            "lang": "en_us"
+        ]
+        
+        let extensionQuery = baseURL.withQueries(queryDictionary)!
+        print("extensionQuery: \(extensionQuery)")
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -25,4 +39,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+}
+
+extension URL {
+    func withQueries(_ queries: [String: String]) -> URL? {
+        var components = URLComponents(url: self, resolvingAgainstBaseURL: true)
+        components?.queryItems = queries.map { URLQueryItem(name: $0.0, value: $0.1) }
+            return components?.url
+    }
 }
