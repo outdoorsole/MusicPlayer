@@ -40,7 +40,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 print(error)
                 return
             }
+            
+            if let data = data,
+                let results = try? jsonDecoder.decode(Results.self, from: data) {
+                print(results)
+            }
         }
+        task.resume()
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
