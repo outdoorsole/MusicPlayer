@@ -13,20 +13,36 @@ class ViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Outlets
     @IBOutlet weak var searchTextField: UITextField!
     
+    // MARK: - Properties
+    var artist: String = ""
+    
     // MARK: - Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         searchTextField.delegate = self
         
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.text != nil {
+            artist = textField.text!
+        }
+        print("artist: \(artist)")
+        querySong()
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func querySong() {
         // create base URL
         let baseURL = URL(string: "https://itunes.apple.com/search")!
         
         // create dictionary with key/value pairs for query
         let queryDictionary: [String: String] = [
-            "term": "Johnny Cash",
+            "term": artist,
             "media": "music",
-            "limit": "10",
+            "limit": "1",
             "lang": "en_us"
         ]
         
@@ -48,12 +64,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         task.resume()
     }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
 }
 
 extension URL {
