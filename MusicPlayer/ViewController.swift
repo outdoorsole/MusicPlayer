@@ -13,6 +13,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Outlets
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var artworkImage: UIImageView!
+    @IBOutlet weak var trackNameLabel: UILabel!
+    @IBOutlet weak var artistNameLabel: UILabel!
     
     // MARK: - Properties
     var artist: String = ""
@@ -53,6 +55,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let task = URLSession.shared.dataTask(with: extensionQuery) { (data, response, error) in
             print("in completion handler")
             let jsonDecoder = JSONDecoder()
+            var trackNameString: String
+            var artistNameString: String
             var artworkUrl: String
             
             if let error = error {
@@ -63,12 +67,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
             if let data = data,
                 let results = try? jsonDecoder.decode(Results.self, from: data) {
                 print("results \(results)")
+                
+                trackNameString = results.results[0].artistName
+                artistNameString = results.results[0].trackName
                 artworkUrl = results.results[0].artworkUrl60
                 
                 print("artworkUrl: \(artworkUrl)")
                 self.queryArtwork(url: artworkUrl)
+                self.updateLabels(trackName: trackNameString, artistName: artistNameString)
             }
-            
         }
         task.resume()
     }
@@ -94,6 +101,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         }
         task.resume()
+    }
+    
+    func updateLabels(trackName: String, artistName: String) {
+        DispatchQueue.main.async {
+            self.trackNameLabel.text = trackName
+            self.artistNameLabel.text = artistName
+        }
     }
 }
 
