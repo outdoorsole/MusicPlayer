@@ -12,6 +12,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: - Outlets
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var artworkImage: UIImageView!
     
     // MARK: - Properties
     var artist: String = ""
@@ -52,6 +53,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let task = URLSession.shared.dataTask(with: extensionQuery) { (data, response, error) in
             print("in completion handler")
             let jsonDecoder = JSONDecoder()
+            var artworkUrl: String
+            
             if let error = error {
                 print(error)
                 return
@@ -59,8 +62,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
             if let data = data,
                 let results = try? jsonDecoder.decode(Results.self, from: data) {
-                print(results)
+                print("results \(results)")
+                artworkUrl = results.results[0].artworkUrl60
+                
+                print("artworkUrl: \(artworkUrl)")
             }
+            
         }
         task.resume()
     }

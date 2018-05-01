@@ -75,6 +75,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="artworkImage" destination="Slh-xw-wqK" id="2R0-BA-I4D"/>
                         <outlet property="searchTextField" destination="EEb-kN-PZ9" id="bmo-dA-khl"/>
                     </connections>
                 </viewController>
