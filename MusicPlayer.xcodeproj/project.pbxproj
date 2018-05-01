@@ -13,6 +13,7 @@
 		16EA16C320980EBC003C3F50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16EA16C220980EBC003C3F50 /* Assets.xcassets */; };
 		16EA16C620980EBC003C3F50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16EA16C420980EBC003C3F50 /* LaunchScreen.storyboard */; };
 		16EA16CE20982989003C3F50 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EA16CD20982989003C3F50 /* Track.swift */; };
+		16EA16D020982D12003C3F50 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EA16CF20982D12003C3F50 /* Results.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		16EA16C520980EBC003C3F50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		16EA16C720980EBC003C3F50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16EA16CD20982989003C3F50 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		16EA16CF20982D12003C3F50 /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				16EA16BD20980EBC003C3F50 /* ViewController.swift */,
 				16EA16BF20980EBC003C3F50 /* Main.storyboard */,
 				16EA16CD20982989003C3F50 /* Track.swift */,
+				16EA16CF20982D12003C3F50 /* Results.swift */,
 				16EA16C220980EBC003C3F50 /* Assets.xcassets */,
 				16EA16C420980EBC003C3F50 /* LaunchScreen.storyboard */,
 				16EA16C720980EBC003C3F50 /* Info.plist */,
@@ -141,6 +144,7 @@
 			files = (
 				16EA16BE20980EBC003C3F50 /* ViewController.swift in Sources */,
 				16EA16BC20980EBC003C3F50 /* AppDelegate.swift in Sources */,
+				16EA16D020982D12003C3F50 /* Results.swift in Sources */,
 				16EA16CE20982989003C3F50 /* Track.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
