@@ -32,6 +32,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         let extensionQuery = baseURL.withQueries(queryDictionary)!
         print("extensionQuery: \(extensionQuery)")
+        
+        let task = URLSession.shared.dataTask(with: extensionQuery) { (data, response, error) in
+            print("in completion handler")
+            let jsonDecoder = JSONDecoder()
+            if let error = error {
+                print(error)
+                return
+            }
+        }
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
