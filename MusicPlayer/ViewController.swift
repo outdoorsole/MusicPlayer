@@ -27,16 +27,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
 
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.text != nil {
-            artist = textField.text!
+    @IBAction func PlayButtonPressed(_ sender: UIButton) {
+        if searchTextField.text != nil {
+            artist = searchTextField.text!
         }
-        print("artist: \(artist)")
         querySong()
+    }
+    
+    // MARK: - TextField Delegate Method (Optional)
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
+    // MARK: - Helper Methods
     func querySong() {
         // create base URL
         let baseURL = URL(string: "https://itunes.apple.com/search")!
@@ -111,6 +115,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
+// MARK: - Extension
 extension URL {
     func withQueries(_ queries: [String: String]) -> URL? {
         var components = URLComponents(url: self, resolvingAgainstBaseURL: true)
