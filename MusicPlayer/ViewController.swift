@@ -66,8 +66,32 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 artworkUrl = results.results[0].artworkUrl60
                 
                 print("artworkUrl: \(artworkUrl)")
+                self.queryArtwork(url: artworkUrl)
             }
             
+        }
+        task.resume()
+    }
+    
+    func queryArtwork(url: String) {
+        let searchUrl = URL(string: url)!
+        
+        let task = URLSession.shared.dataTask(with: searchUrl) { (data, response, error) in
+            print("in queryArtwork completion handler")
+            
+            var displayImage: UIImage?
+            
+            if error != nil {
+                print("Error in queryArtwork \(error!)")
+            }
+            
+            if let imageData = data {
+                displayImage = UIImage(data: imageData)
+            }
+            
+            DispatchQueue.main.async {
+                self.artworkImage.image = displayImage
+            }
         }
         task.resume()
     }
